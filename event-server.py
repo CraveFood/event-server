@@ -5,6 +5,8 @@ from flask import Flask, jsonify, request, json
 from pymongo import MongoClient
 from werkzeug.exceptions import BadRequest
 
+from . import settings
+
 app = Flask(__name__)
 
 # Replace Flask dumps by Mongo BSON dumps
@@ -12,7 +14,7 @@ json.dumps = json_util.dumps
 
 
 def get_mongo_client():
-    return MongoClient('mongo')
+    return MongoClient(settings.MONGO_URI)
 
 
 def get_log_db():
