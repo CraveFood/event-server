@@ -3,7 +3,6 @@ from datetime import datetime
 from bson import json_util
 from flask import Flask, jsonify, request, json
 from pymongo import MongoClient
-from werkzeug.exceptions import BadRequest
 
 from . import settings
 
@@ -11,6 +10,13 @@ app = Flask(__name__)
 
 # Replace Flask dumps by Mongo BSON dumps
 json.dumps = json_util.dumps
+
+
+def bad_request(msg):
+    json_error = {
+        'error': msg,
+    }
+    return jsonify(json_error), 400
 
 
 def get_mongo_client():
@@ -24,13 +30,13 @@ def get_log_db():
 
 @app.route("/", methods=['GET'])
 def ok():
-    return "ok"
+    return jsonify({'ok': True})
 
 
 @app.route("/event", methods=['POST'])
 def new_event():
-    if not request.json or not request.json.get('name'):
-        return BadRequest('Event must have a name')
+    if not request.get_data() or not request.json.get('name'):
+        return bad_request("Event must have a name")
 
     event = {
         'type': 'event',
@@ -47,7 +53,7 @@ def new_event():
     events = get_log_db().events
     inserted_id = events.insert_one(event).inserted_id
     inserted_event = events.find_one({'_id': inserted_id})
-    return jsonify(inserted_event)
+    return jsonify(inserted_event), 201
 
 
 @app.route("/event", methods=["GET"])
@@ -81,13 +87,13 @@ def new_request():
 
     for attr in mandatory_request_attrs:
         if attr not in request.json:
-            return BadRequest("'{}' is a required "
-                              "Request attribute".format(attr))
+            return bad_request("'{}' is a required "
+                               "Request attribute".format(attr))
 
     requests = get_log_db().requests
     inserted_id = requests.insert_one(request.json).inserted_id
     inserted_event = requests.find_one({'_id': inserted_id})
-    return jsonify(inserted_event)
+    return jsonify(inserted_event), 201
 
 
 @app.route("/request", methods=["GET"])

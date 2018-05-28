@@ -11,7 +11,7 @@ services:
   event-server:
     build: .
     environment:
-      FLASK_APP: /code/eventserver/event-server.py
+      FLASK_APP: /code/eventserver/eventserver.py
     command: flask run --host 0.0.0.0 -p 5000 --reload
     links:
       - mongo
