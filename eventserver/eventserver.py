@@ -29,7 +29,7 @@ def ok():
 
 @app.route("/event", methods=['POST'])
 def new_event():
-    if not request.json.get('name'):
+    if not request.json or not request.json.get('name'):
         return BadRequest('Event must have a name')
 
     event = {
