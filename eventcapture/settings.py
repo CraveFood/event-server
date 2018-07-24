@@ -3,16 +3,13 @@ import os
 from eventcapture.schema import EVENT
 
 MONGO_HOST = os.getenv('EVENT_CAPTURE_MONGO_URI', 'mongo')
-# MONGO_PORT = 27017
-# MONGO_USERNAME = 'admin'
-# MONGO_PASSWORD = 'admin'
 
-MONGO_DBNAME = 'events'
+MONGO_DBNAME = 'event'
 
 RESOURCE_METHODS = ['POST']
 
-events = {
+event = {
     'schema': EVENT,
 }
 
-DOMAIN = {'events': events}
+DOMAIN = {'event': event}
