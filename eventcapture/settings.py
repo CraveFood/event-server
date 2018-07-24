@@ -1,6 +1,6 @@
 import os
 
-from schema import EVENT
+from eventcapture.schema import EVENT
 
 MONGO_HOST = os.getenv('EVENT_CAPTURE_MONGO_URI', 'mongo')
 # MONGO_PORT = 27017

@@ -1,6 +1,6 @@
 from eve import Eve
 
-from auth import Auth
+from eventcapture.auth import Auth
 
 
 app = Eve(auth=Auth)
