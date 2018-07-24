@@ -14,6 +14,10 @@ EVENT = {
         'maxlength': 100,
         'required': True,
     },
+    'segmentation': {
+        'type': 'dict',
+        'required': True
+    },
     'user_id': {
         'type': 'integer',
     },
@@ -23,16 +27,12 @@ EVENT = {
     'session_id': {
         'type': 'string',
         'minlength': 1,
-        'maxlength': 10,
+        'maxlength': 256,
     },
     'device_id': {
         'type': 'string',
         'minlength': 1,
-        'maxlength': 10,
-    },
-    'segmentation': {
-        'type': 'dict',
-        'required': True
+        'maxlength': 256,
     },
     'timestamp': {
         'type': 'datetime',
