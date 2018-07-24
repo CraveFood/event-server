@@ -8,7 +8,7 @@ def coerce_to_now(timestamp=None):
 
 
 EVENT = {
-    'event': {
+    'name': {
         'type': 'string',
         'minlength': 1,
         'maxlength': 100,
@@ -32,6 +32,7 @@ EVENT = {
     },
     'segmentation': {
         'type': 'dict',
+        'required': True
     },
     'timestamp': {
         'type': 'datetime',
