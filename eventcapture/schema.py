@@ -26,13 +26,13 @@ EVENT = {
     },
     'session_id': {
         'type': 'string',
-        'minlength': 1,
-        'maxlength': 256,
+        'nullable': True,
+        'empty': True,
     },
     'device_id': {
         'type': 'string',
-        'minlength': 1,
-        'maxlength': 256,
+        'nullable': True,
+        'empty': True,
     },
     'timestamp': {
         'type': 'datetime',
