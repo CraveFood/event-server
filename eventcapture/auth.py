@@ -1,10 +1,7 @@
 import os
 
 from eve.auth import BasicAuth
-
-
-USERNAME = os.getenv('EVENT_CAPTURE_USERNAME', 'admin')
-PASSWORD = os.getenv('EVENT_CAPTURE_PASSWORD', 'secret')
+from eventcapture.settings import USERNAME, PASSWORD
 
 
 class Auth(BasicAuth):

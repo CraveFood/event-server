@@ -13,3 +13,9 @@ event = {
 }
 
 DOMAIN = {'event': event}
+
+try:
+    from eventcapture.localsettings import USERNAME, PASSWORD
+except ImportError:
+    USERNAME = os.getenv('EVENT_CAPTURE_USERNAME', 'admin')
+    PASSWORD = os.getenv('EVENT_CAPTURE_PASSWORD', 'secret')
