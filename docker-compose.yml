@@ -8,10 +8,10 @@ services:
     volumes:
       - mongo-data:/data/
 
-  event-server:
+  eventcapture:
     build: .
     environment:
-      FLASK_APP: /code/eventserver/eventserver.py
+      FLASK_APP: /code/eventcapture/app.py
     command: flask run --host 0.0.0.0 -p 5000 --reload
     links:
       - mongo
