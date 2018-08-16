@@ -34,6 +34,11 @@ EVENT = {
         'nullable': True,
         'empty': True,
     },
+    'whitelabel': {
+        'type': 'string',
+        'nullable': True,
+        'empty': True,
+    },
     'timestamp': {
         'type': 'datetime',
         'default': 'empty',
