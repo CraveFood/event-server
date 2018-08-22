@@ -2,20 +2,18 @@ import os
 
 from eventcapture.schema import EVENT
 
-MONGO_HOST = os.getenv('EVENT_CAPTURE_MONGO_URI', 'mongo')
+MONGO_HOST = os.getenv("EVENT_CAPTURE_MONGO_URI", "mongo")
+MONGO_WRITE_CONCERN = {"w": 0, "j": False}
+MONGO_DBNAME = "event"
 
-MONGO_DBNAME = 'event'
+RESOURCE_METHODS = ["POST"]
 
-RESOURCE_METHODS = ['POST']
+event = {"schema": EVENT}
 
-event = {
-    'schema': EVENT,
-}
-
-DOMAIN = {'event': event}
+DOMAIN = {"event": event}
 
 try:
     from eventcapture.localsettings import USERNAME, PASSWORD
 except ImportError:
-    USERNAME = os.getenv('EVENT_CAPTURE_USERNAME', 'admin')
-    PASSWORD = os.getenv('EVENT_CAPTURE_PASSWORD', 'secret')
+    USERNAME = os.getenv("EVENT_CAPTURE_USERNAME", "admin")
+    PASSWORD = os.getenv("EVENT_CAPTURE_PASSWORD", "secret")
